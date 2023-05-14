@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react'
+import { Wheel } from 'react-custom-roulette'
 
-function App() {
+const data = [
+  { option: 'Biologia' },
+  { option: 'Química' },
+  { option: 'Física' },
+  { option: 'Matemática' },
+  { option: 'História' },
+  { option: 'Geografia' },
+  { option: 'Filosofia' },
+  { option: 'Gramática' },
+  { option: 'Literatura' },
+  { option: 'Redação' },
+  
+]
+
+export default () => {
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length)
+    setPrizeNumber(newPrizeNumber)
+    setMustSpin(true)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <div className='spin'>
+      <Wheel
+        
+        mustStartSpinning={mustSpin}
+        prizeNumber={prizeNumber}
+        data={data}
+        backgroundColors={['#836FFF	', '#00BFFF	', '#7FFFD4', '#00FF00', '#B8860B	', '#9932CC', '#FFC0CB', '#B22222', '#FF8C00', '#FFD700	']}
+        onStopSpinning={() => {
+          setMustSpin(false)
+        }}
+      />
+    </div>  
+    <button className='btn' onClick={handleSpinClick}>SPIN</button>
+    </>
+  )
 }
-
-export default App;
