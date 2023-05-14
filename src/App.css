@@ -49,3 +49,18 @@ button{
   margin-left: 610px;
   
 }
+
+@media only screen and (max-width: 450px) {
+  .spin{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+  }
+  
+  button{
+    text-align: center;
+    justify-content: center;
+    margin-left: 160px;
+  }
+}
